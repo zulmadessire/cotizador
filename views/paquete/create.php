@@ -77,7 +77,7 @@ $this->params['breadcrumbs'][] = $this->title;
 	            			<th>Código</th> 
 	            			<th>Nombre</th> 
 	            			<th>Cantidad</th> 
-	            			<th>Precio</th>
+	            			<th>Precio Unidad</th>
 	            			<th>Descuento</th>
 	            			<th>Añadir</th>
 	            		</tr>
@@ -92,7 +92,11 @@ $this->params['breadcrumbs'][] = $this->title;
 				      				echo '<td>'.$producto['nombre'].'</td>';
 				      				echo '<td><input id="cant-'.$producto['id'].'" class="cant form-control" type="number" value="1" min="1" max="'.$producto['existencia'].'"></td>';
 				      				echo '<td>$'.$producto['precio_venta'].'</td>';
-				      				echo '<td><input id="descuento-'.$producto['id'].'" class="descuento form-control" type="number" value="0" min="0" max="100"></td>';
+				      				echo '<td><div class="input-group">
+												  <div class="input-group-addon">%</div>
+												  <input id="descuento-'.$producto['id'].'" class="descuento form-control" type="number" value="0" min="0" max="100">
+											   </div>
+				      					  </td>';
 				      				echo '<td><a href="#" class="btn btn-default add-producto" data-id="'.$producto['id'].'" 
 				      																		   data-codigo="'.$producto['codigo'].'" 
 				      																		   data-nombre="'.$producto['nombre'].'" 

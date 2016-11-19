@@ -19,7 +19,7 @@ jQuery(document).ready(function(jQuery) {
                         total = cantidad * precio;
                     }
 
-                    jQuery('#productos').append('<tr>'+ 
+                    jQuery('#productos').append('<tr id="paquete-producto-'+id+'">'+ 
                                                     '<td>#</td>'+
                                                     '<td>'+codigo+'<input type="text" name="producto[]" value="'+id+'" hidden></td>'+
                                                     '<td>'+nombre+'</td>'+
