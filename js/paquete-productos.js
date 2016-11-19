@@ -21,11 +21,11 @@ jQuery(document).ready(function(jQuery) {
 
                     jQuery('#productos').append('<tr>'+ 
                                                     '<td>#</td>'+
-                                                    '<td>'+codigo+'</td>'+
+                                                    '<td>'+codigo+'<input type="text" name="producto[]" value="'+id+'" hidden></td>'+
                                                     '<td>'+nombre+'</td>'+
-                                                    '<td>'+cantidad+'</td>'+
+                                                    '<td>'+cantidad+'<input type="text" name="cant[]" value="'+cantidad+'" hidden></td>'+
                                                     '<td>$'+precio+'</td>'+
-                                                    '<td>'+descuento+'%</td>'+
+                                                    '<td>'+descuento+'%<input type="text" name="descuento[]" value="'+descuento+'" hidden></td>'+
                                                     '<td>$'+total+'</td>'+
                                                 '</tr>');
                     jQuery('#productos-modal > tr#producto-'+id).hide();

@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use Yii;
 use app\models\Paquete;
+use app\models\PaqueteProducto;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -65,8 +66,14 @@ class PaqueteController extends Controller
     {
         $model = new Paquete();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        $dataProvider = new ActiveDataProvider([
+            'query' => Paquete::find(),
+        ]);
+
+        if ($model->load(Yii::$app->request->post()) && $this->savePaqueteProductos() ) {
+           return $this->render('index', [
+            'dataProvider' => $dataProvider,
+        ]);
         } else {
             return $this->render('create', [
                 'model' => $model,
@@ -120,5 +127,41 @@ class PaqueteController extends Controller
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function savePaqueteProductos()
+    {
+
+        $model = new Paquete();
+
+        $request = Yii::$app->request;
+
+        $post_paquete = $request->post('Paquete');
+        $post_productos = $request->post('producto');
+        $post_cantidad = $request->post('cant');
+        $post_descuento = $request->post('descuento');
+
+        //$paquete = new Paquete;
+        $model->nombre = $post_paquete['nombre'];
+        $model->estado = $post_paquete['estado'];
+        $model->save();
+
+        for ( $i=0; $i < count($post_productos); $i++) {
+            $model_pp = new PaqueteProducto();
+            $model_pp->isNewRecord = true; 
+            $model_pp->paquete_id = $model->id;
+            $model_pp->producto_id = $post_productos[$i];
+            $model_pp->cantidad = $post_cantidad[$i];
+            $model_pp->descuento = $post_descuento[$i];
+            $model_pp->save();
+            unset($model_pp);
+        }
+        
+        
+
+        return true;
     }
 }
