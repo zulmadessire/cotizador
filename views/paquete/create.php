@@ -28,7 +28,7 @@ $this->params['breadcrumbs'][] = $this->title;
 	            <div class="col-xs-12">
 	            	<h3 class="col-xs-6">Productos:</h3>
 	            	<!-- Button trigger modal -->
-	            	<div class="col-xs-6">
+	            	<div class="col-xs-6 text-right">
 	            		<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#productosModal">
 						  + Añadir Productos
 						</button>
@@ -38,30 +38,16 @@ $this->params['breadcrumbs'][] = $this->title;
 		            	<thead> 
 		            		<tr> 
 		            			<th>#</th>
-		            			<th>First Name</th> 
-		            			<th>Last Name</th> 
-		            			<th>Username</th> 
+		            			<th>Código</th> 
+		            			<th>Nombre</th> 
+		            			<th>Cantidad</th> 
+		            			<th>Precio</th>
+		            			<th>Descuento</th>
+		            			<th>Total</th>
 		            		</tr>
 		            	</thead>
-		            	<tbody>
-		            		<tr>
-		            			<th scope="row">1</th>
-		            			<td>Mark</td>
-		            			<td>Otto</td> 
-		            			<td>@mdo</td> 
-		            		</tr> 
-		            		<tr> 
-		            			<th scope="row">2</th> 
-		            			<td>Jacob</td> 
-		            			<td>Thornton</td>
-		            			<td>@fat</td> 
-		            		</tr> 
-		            		<tr> 
-		            			<th scope="row">3</th> 
-		            				<td>Larry</td> 
-		            				<td>the Bird</td> 
-		            				<td>@twitter</td> 
-		            		</tr> 
+		            	<tbody id="productos">
+		            		
 		            	</tbody> 
 					</table>
 	            </div>
@@ -83,14 +69,37 @@ $this->params['breadcrumbs'][] = $this->title;
 		        <h4 class="modal-title" id="myModalLabel">Productos</h4>
 		    </div>
 	      	<div class="modal-body">
-	      		<?php
-		      		$productos = Yii::$app->db->createCommand('SELECT * FROM producto')->queryAll();
 
-		      		foreach ($productos as $producto) {
-		      			echo "El producto";
-		      			print_r($producto['nombre']);
-		      		}
-	      		?>
+	      		<table class="table table-hover"> 
+	            	<thead> 
+	            		<tr>
+	            			<th>Código</th> 
+	            			<th>Nombre</th> 
+	            			<th>Cantidad</th> 
+	            			<th>Precio</th>
+	            			<th>Descuento</th>
+	            			<th>Total</th>
+	            			<th>Añadir</th>
+	            		</tr>
+	            	</thead>
+	            	<tbody id="productos-modal">
+	            		<?php
+				      		$productos = Yii::$app->db->createCommand('SELECT * FROM producto')->queryAll();
+
+				      		foreach ($productos as $producto) {
+				      			echo '<tr id="'.$producto['id'].'">';
+				      				echo '<td>'.$producto['codigo'].'</td>';
+				      				echo '<td>'.$producto['nombre'].'</td>';
+				      				echo '<td>Cantidad</td>';
+				      				echo '<td>'.$producto['precio_venta'].'</td>';
+				      				echo '<td>Descuento</td>';
+				      				echo '<td>Total</td>';
+				      				echo '<td><a href="#" class="btn btn-default añadir-producto"><span class="glyphicon glyphicon-plus"></span></a></td>';
+				      			echo '</tr>';
+				      		}
+			      		?>
+	            	</tbody> 
+				</table>
 	      	</div>
 	      	<div class="modal-footer">
 	        	<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
