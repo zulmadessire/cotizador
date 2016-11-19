@@ -10,6 +10,7 @@ use yii\widgets\ActiveForm;
 $this->title = 'Añadir Paquete';
 $this->params['breadcrumbs'][] = ['label' => 'Paquetes', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
+
 ?>
 <div class="paquete-create">
 	
@@ -78,7 +79,6 @@ $this->params['breadcrumbs'][] = $this->title;
 	            			<th>Cantidad</th> 
 	            			<th>Precio</th>
 	            			<th>Descuento</th>
-	            			<th>Total</th>
 	            			<th>Añadir</th>
 	            		</tr>
 	            	</thead>
@@ -87,14 +87,17 @@ $this->params['breadcrumbs'][] = $this->title;
 				      		$productos = Yii::$app->db->createCommand('SELECT * FROM producto')->queryAll();
 
 				      		foreach ($productos as $producto) {
-				      			echo '<tr id="'.$producto['id'].'">';
+				      			echo '<tr id="producto-'.$producto['id'].'">';
 				      				echo '<td>'.$producto['codigo'].'</td>';
 				      				echo '<td>'.$producto['nombre'].'</td>';
-				      				echo '<td>Cantidad</td>';
-				      				echo '<td>'.$producto['precio_venta'].'</td>';
-				      				echo '<td>Descuento</td>';
-				      				echo '<td>Total</td>';
-				      				echo '<td><a href="#" class="btn btn-default añadir-producto"><span class="glyphicon glyphicon-plus"></span></a></td>';
+				      				echo '<td><input id="cant-'.$producto['id'].'" class="cant form-control" type="number" value="1" min="1" max="'.$producto['existencia'].'"></td>';
+				      				echo '<td>$'.$producto['precio_venta'].'</td>';
+				      				echo '<td><input id="descuento-'.$producto['id'].'" class="descuento form-control" type="number" value="0" min="0" max="100"></td>';
+				      				echo '<td><a href="#" class="btn btn-default add-producto" data-id="'.$producto['id'].'" 
+				      																		   data-codigo="'.$producto['codigo'].'" 
+				      																		   data-nombre="'.$producto['nombre'].'" 
+				      																		   data-precio="'.$producto['precio_venta'].'">
+				      																				<span class="glyphicon glyphicon-plus"></span></a></td>';
 				      			echo '</tr>';
 				      		}
 			      		?>
@@ -107,3 +110,5 @@ $this->params['breadcrumbs'][] = $this->title;
 	    </div>
 	</div>
 </div>
+<?php $this->registerJsFile('cotizador/js/paquete-productos.js', ['depends' => [yii\web\JqueryAsset::className()]]); ?> 
+
