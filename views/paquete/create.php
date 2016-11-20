@@ -40,7 +40,8 @@ $this->params['breadcrumbs'][] = $this->title;
 		            		<tr> 
 		            			<th>#</th>
 		            			<th>Código</th> 
-		            			<th>Nombre</th> 
+		            			<th>Nombre</th>
+		            			<th>Descripcion</th>
 		            			<th>Cantidad</th> 
 		            			<th>Precio</th>
 		            			<th>Descuento</th>
@@ -52,14 +53,14 @@ $this->params['breadcrumbs'][] = $this->title;
 		            	</tbody>
 		            	<tfoot>
 		            		<tr>
-			            	<td></td>
-			            	<td></td>
-			            	<td></td>
-			            	<td></td>
-			            	<td></td>
-			            	<td></td>
-		            		<th style="border-top: 1px solid black; font-size: 20px;">Total $</th>
-		            		<th id="total" style="border-top: 1px solid black; font-size: 20px;">0</th>
+				            	<td></td>
+				            	<td></td>
+				            	<td></td>
+				            	<td></td>
+				            	<td></td>
+				            	<td></td>
+			            		<th style="border-top: 1px solid black; font-size: 20px;">Total $</th>
+			            		<th id="total" style="border-top: 1px solid black; font-size: 20px;">0</th>
 		            		</tr>
 		            	</tfoot>
 					</table>

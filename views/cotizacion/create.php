@@ -19,31 +19,44 @@ $this->params['breadcrumbs'][] = $this->title;
 		<div class="col-xs-12">
 			<h1><?= Html::encode($this->title) ?></h1>
 		</div>
+	</div>
+	<div class="row">
 		<div class="col-xs-4">
 			<?= $form->field($model, 'vendedor')->textInput()->label('Vendedor') ?>
 		</div>
+	</div>
+	<div class="row">
 		<div class="col-xs-4">
 			<?= $form->field($model, 'cliente')->textInput()->label('Nombre Cliente') ?>
 		</div>
 		<div class="col-xs-4">
 			<?= $form->field($model, 'ruc')->textInput()->label('RUC Cliente') ?>
 		</div>
-		<div class="col-xs-4">
+	</div>
+	<div class="row">
+		<div class="col-xs-3">
 			<?= $form->field($model, 'fecha_limite')->widget(\yii\jui\DatePicker::classname(), [
 			    //'language' => 'ru',
 			    'dateFormat' => 'yyyy-MM-dd',
 			    'options' => ['class' => 'form-control'],
 			])->label('Validez Cotización') ?>
 		</div>
-		<div class="col-xs-4">
+		<div class="col-xs-3">
 			<?= $form->field($model, 'entrega')->textInput()->label('Tiempo de entrega') ?>
+		</div>
+		<div class="col-xs-3">
+			<?= $form->field($model, 'iva')->textInput(['value'=>'12'])->label('IVA') ?>
+		</div>
+		<div class="col-xs-3">
+			<?= $form->field($model, 'descuento')->textInput(['value'=>'0'])->label('Descuento') ?>
 		</div>
 
 		<div class="col-xs-12">
-			<div class="col-xs-12 text-right">
+			<div class="text-right">
         		<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#productosModal">
 				  + Añadir Productos
 				</button>
+				<?= Html::submitButton('Guardar', ['class' => 'btn btn-primary']) ?>
         	</div>
         	<h3 class="col-xs-6">Productos:</h3>
         	<!-- Button trigger modal -->
@@ -66,21 +79,36 @@ $this->params['breadcrumbs'][] = $this->title;
             	</tbody>
             	<tfoot>
             		<tr>
+		            	<td></td>
+		            	<td></td>
+		            	<td></td>
+		            	<td></td>
+		            	<td></td>
+	            		<td style="text-align: left; border-top: 1px solid black;">Sub Total $</td>
+	            		<td id="sub-total" style="text-align: right; border-top: 1px solid black;">0</td>
+            		</tr>
+	            	<tr>
+		            	<td></td>
+		            	<td></td>
+		            	<td></td>
+		            	<td></td>
+		            	<td></td>
+	            		<th style="text-align: left; font-size: 15px;">IVA (<span id="iva">12</span>)%</th>
+	            		<th id="total-iva" style="text-align: right; font-size: 15px;">0</th>
+	        		</tr>
+            		<tr>
 	            	<td></td>
 	            	<td></td>
 	            	<td></td>
 	            	<td></td>
 	            	<td></td>
-            		<th style="border-top: 1px solid black; font-size: 20px;">Total $</th>
-            		<th id="total" style="border-top: 1px solid black; font-size: 20px;">0</th>
+            		<th style="text-align: left; font-size: 20px;">Total $</th>
+            		<th id="total" style="text-align: right; font-size: 20px;">0</th>
             		</tr>
             	</tfoot>
 			</table>
         </div>
-        
-	    <div class="col-xs-12 form-group">
-	        <?= Html::submitButton('Guardar', ['class' => 'btn btn-primary']) ?>
-	    </div>
+	    
 	</div>
 
     <?php ActiveForm::end(); ?>
