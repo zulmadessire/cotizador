@@ -4,7 +4,9 @@ namespace app\controllers;
 
 use Yii;
 use app\models\Cotizacion;
+use app\models\CotizacionProducto;
 use app\models\CotizacionSearch;
+use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -65,8 +67,14 @@ class CotizacionController extends Controller
     {
         $model = new Cotizacion();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        $searchModel = new CotizacionSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        if ($model->load(Yii::$app->request->post()) && $this->saveCotizacionProductos() ) {
+            return $this->render('index', [
+                'searchModel' => $searchModel,
+                'dataProvider' => $dataProvider,
+            ]);
         } else {
             return $this->render('create', [
                 'model' => $model,
@@ -120,5 +128,40 @@ class CotizacionController extends Controller
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
+    }
+
+    public function saveCotizacionProductos()
+    {
+
+        $model = new Cotizacion();
+
+        $request = Yii::$app->request;
+
+        $post_cotizacion = $request->post('Cotizacion');
+        $post_productos = $request->post('producto');
+        $post_cantidad = $request->post('cant');
+        $post_precio = $request->post('precio');
+
+        $model->vendedor = $post_cotizacion['vendedor'];
+        $model->cliente = $post_cotizacion['cliente'];
+        $model->ruc = $post_cotizacion['ruc'];
+        $model->entrega = $post_cotizacion['entrega'];
+        $model->iva = $post_cotizacion['iva'];
+        $model->fecha_limite = $post_cotizacion['fecha_limite'];
+        $model->descuento = $post_cotizacion['descuento'];
+        $model->save();
+
+        for ( $i=0; $i < count($post_productos); $i++) {
+            $model_cp = new CotizacionProducto();
+            $model_cp->isNewRecord = true; 
+            $model_cp->cotizacion_id = $model->id;
+            $model_cp->producto_id = $post_productos[$i];
+            $model_cp->cantidad = $post_cantidad[$i];
+            $model_cp->precio = $post_precio[$i];
+            $model_cp->save();
+            unset($model_cp);
+        }
+        
+        return true;
     }
 }

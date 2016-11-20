@@ -49,7 +49,7 @@ jQuery(document).ready(function(jQuery) {
 	                    total_iva = ( (sub_total) * iva) / 100;
 	                    jQuery('#total-iva').html( total_iva.toFixed(2) );
 	                    //Total
-	                    total = sub_total + total_iva;
+	                    total = (sub_total - total_descuento ) + total_iva;
 	                    jQuery('#total').html( total.toFixed(2) );
 
 	                    jQuery('#productos-modal > tr#producto-'+id).hide();
