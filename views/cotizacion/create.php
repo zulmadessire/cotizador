@@ -58,12 +58,14 @@ $this->params['breadcrumbs'][] = $this->title;
             			<th>Cantidad</th> 
             			<th>Precio</th>
             			<th>Total</th>
+            			<th>Eliminar</th>
             		</tr>
             	</thead>
             	<tbody id="productos">
             		
             	</tbody>
             	<tfoot>
+            		<tr>
 	            	<td></td>
 	            	<td></td>
 	            	<td></td>
@@ -71,6 +73,7 @@ $this->params['breadcrumbs'][] = $this->title;
 	            	<td></td>
             		<th style="border-top: 1px solid black; font-size: 20px;">Total $</th>
             		<th id="total" style="border-top: 1px solid black; font-size: 20px;">0</th>
+            		</tr>
             	</tfoot>
 			</table>
         </div>
@@ -98,7 +101,8 @@ $this->params['breadcrumbs'][] = $this->title;
 	            	<thead> 
 	            		<tr>
 	            			<th>Código</th> 
-	            			<th>Nombre</th> 
+	            			<th>Nombre</th>
+	            			<th>Existencia</th>
 	            			<th>Cantidad</th> 
 	            			<th>Precio</th>
 	            			<th>Añadir</th>
@@ -112,7 +116,11 @@ $this->params['breadcrumbs'][] = $this->title;
 				      			echo '<tr id="producto-'.$producto['id'].'">';
 				      				echo '<td>'.$producto['codigo'].'</td>';
 				      				echo '<td>'.$producto['nombre'].'</td>';
-				      				echo '<td><input id="cant-'.$producto['id'].'" class="cant form-control" type="number" value="1" min="1" max="'.$producto['existencia'].'"></td>';
+				      				echo '<td>'.$producto['existencia'].'</td>';
+				      				echo '<td><div>
+				      							<input id="cant-'.$producto['id'].'" class="cant form-control" type="number" value="1" min="1" max="'.$producto['existencia'].'" aria-describedby="helpBlock-'.$producto['id'].'">
+				      						  </div>
+				      					  </td>';
 				      				echo '<td><div class="input-group">
 												  <div class="input-group-addon">$</div>
 												  <input id="precio-'.$producto['id'].'" class="form-control" type="number" value="'.$producto['precio_venta'].'" min="0" >
@@ -123,7 +131,7 @@ $this->params['breadcrumbs'][] = $this->title;
 				      																		   data-nombre="'.$producto['nombre'].'" 
 				      																		   data-descripcion="'.$producto['descripcion'].'" 
 				      																		   data-precio="'.$producto['precio_venta'].'">
-				      																				<span class="glyphicon glyphicon-plus"></span></a></td>';
+				      																				<span class="glyphicon glyphicon-plus"></span></a></td>';				      				
 				      			echo '</tr>';
 				      		}
 			      		?>

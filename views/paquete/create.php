@@ -45,11 +45,23 @@ $this->params['breadcrumbs'][] = $this->title;
 		            			<th>Precio</th>
 		            			<th>Descuento</th>
 		            			<th>Total</th>
+		            			<th>Eliminar</th>
 		            		</tr>
 		            	</thead>
 		            	<tbody id="productos">
-		            		
-		            	</tbody> 
+		            	</tbody>
+		            	<tfoot>
+		            		<tr>
+			            	<td></td>
+			            	<td></td>
+			            	<td></td>
+			            	<td></td>
+			            	<td></td>
+			            	<td></td>
+		            		<th style="border-top: 1px solid black; font-size: 20px;">Total $</th>
+		            		<th id="total" style="border-top: 1px solid black; font-size: 20px;">0</th>
+		            		</tr>
+		            	</tfoot>
 					</table>
 	            </div>
 	            
@@ -90,7 +102,10 @@ $this->params['breadcrumbs'][] = $this->title;
 				      			echo '<tr id="producto-'.$producto['id'].'">';
 				      				echo '<td>'.$producto['codigo'].'</td>';
 				      				echo '<td>'.$producto['nombre'].'</td>';
-				      				echo '<td><input id="cant-'.$producto['id'].'" class="cant form-control" type="number" value="1" min="1" max="'.$producto['existencia'].'"></td>';
+				      				echo '<td> <div>
+				      								<input id="cant-'.$producto['id'].'" class="cant form-control" type="number" value="1" min="1" max="'.$producto['existencia'].'">
+												</div>
+				      					  </td>';
 				      				echo '<td>$'.$producto['precio_venta'].'</td>';
 				      				echo '<td><div class="input-group">
 												  <div class="input-group-addon">%</div>
@@ -100,6 +115,7 @@ $this->params['breadcrumbs'][] = $this->title;
 				      				echo '<td><a href="#" class="btn btn-default add-producto" data-id="'.$producto['id'].'" 
 				      																		   data-codigo="'.$producto['codigo'].'" 
 				      																		   data-nombre="'.$producto['nombre'].'" 
+				      																		   data-descripcion="'.$producto['descripcion'].'" 
 				      																		   data-precio="'.$producto['precio_venta'].'">
 				      																				<span class="glyphicon glyphicon-plus"></span></a></td>';
 				      			echo '</tr>';
