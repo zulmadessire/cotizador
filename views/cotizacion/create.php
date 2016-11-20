@@ -79,29 +79,39 @@ $this->params['breadcrumbs'][] = $this->title;
             	</tbody>
             	<tfoot>
             		<tr>
-		            	<td></td>
-		            	<td></td>
-		            	<td></td>
-		            	<td></td>
-		            	<td></td>
+            			<td style="border: none;"></td>
+		            	<td style="border: none;"></td>
+		            	<td style="border: none;"></td>
+		            	<td style="border: none;"></td>
+		            	<td style="border: none;"></td>
 	            		<td style="text-align: left; border-top: 1px solid black;">Sub Total $</td>
 	            		<td id="sub-total" style="text-align: right; border-top: 1px solid black;">0</td>
             		</tr>
-	            	<tr>
-		            	<td></td>
-		            	<td></td>
-		            	<td></td>
-		            	<td></td>
-		            	<td></td>
-	            		<th style="text-align: left; font-size: 15px;">IVA (<span id="iva">12</span>)%</th>
-	            		<th id="total-iva" style="text-align: right; font-size: 15px;">0</th>
+            		<tr>
+		            	<td style="border: none;"></td>
+		            	<td style="border: none;"></td>
+		            	<td style="border: none;"></td>
+		            	<td style="border: none;"></td>
+		            	<td style="border: none;"></td>
+	            		<td style="text-align: left;">Descuento (<span id="descuento">0</span>)%</td>
+	            		<td id="total-descuento" style="text-align: right;">0</td>
 	        		</tr>
             		<tr>
-	            	<td></td>
-	            	<td></td>
-	            	<td></td>
-	            	<td></td>
-	            	<td></td>
+	            	<tr>
+		            	<td style="border: none;"></td>
+		            	<td style="border: none;"></td>
+		            	<td style="border: none;"></td>
+		            	<td style="border: none;"></td>
+		            	<td style="border: none;"></td>
+	            		<td style="text-align: left;">IVA (<span id="iva">12</span>)%</td>
+	            		<td id="total-iva" style="text-align: right;">0</td>
+	        		</tr>
+            		<tr>
+	            	<td style="border: none;"></td>
+	            	<td style="border: none;"></td>
+	            	<td style="border: none;"></td>
+	            	<td style="border: none;"></td>
+	            	<td style="border: none;"></td>
             		<th style="text-align: left; font-size: 20px;">Total $</th>
             		<th id="total" style="text-align: right; font-size: 20px;">0</th>
             		</tr>
@@ -173,4 +183,3 @@ $this->params['breadcrumbs'][] = $this->title;
 	</div>
 </div>
 <?php $this->registerJsFile('cotizador/js/cotizacion-productos.js', ['depends' => [yii\web\JqueryAsset::className()]]); ?> 
-
