@@ -147,6 +147,7 @@ class PaqueteController extends Controller
         //$paquete = new Paquete;
         $model->nombre = $post_paquete['nombre'];
         $model->estado = $post_paquete['estado'];
+        $model->total = $post_paquete['total'];
         $model->save();
 
         for ( $i=0; $i < count($post_productos); $i++) {

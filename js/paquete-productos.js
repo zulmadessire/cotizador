@@ -37,7 +37,8 @@ jQuery(document).ready(function(jQuery) {
                                                         '<td><a class="delete" data-id="'+id+'" href="#"><span class="glyphicon glyphicon-trash"></span></a></td>'+
                                                     '</tr>');
 
-                        jQuery('#total').html(total + total_input);
+                        jQuery('#total').html( (total + total_input).toFixed(2) );
+                        jQuery('#paquete-total').val( (total + total_input).toFixed(2) );
                         jQuery('#productos-modal > tr#producto-'+id).hide();
 
                         Obj.delete();
@@ -56,6 +57,7 @@ jQuery(document).ready(function(jQuery) {
                 var total_producto = parseFloat( jQuery('#total-producto-'+id).html()+"");
                 jQuery('#productos-modal > tr#producto-'+id).show();
                 jQuery('#total').html( (total_input - total_producto).toFixed(2) );
+                jQuery('#paquete-total').val( (total_input - total_producto).toFixed(2) );
                 jQuery('#paquete-producto-'+id).remove();
             });
         },

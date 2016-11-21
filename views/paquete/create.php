@@ -23,9 +23,11 @@ $this->params['breadcrumbs'][] = $this->title;
 			    	<?= $form->field($model, 'nombre')->textInput()->hint('Nombre del paquete')->label('Nombre') ?>
 			    </div>
 			    <div class="col-xs-6"> 
-			    	<?= $form->field($model, 'estado')    ->checkbox(array('label'=>''))
+			    	<?= $form->field($model, 'estado')    ->checkbox(array('label'=>''))->hint('Estado del paquete')
 	                   				      				->label('Estado'); ?>
 	            </div>
+	            	<?= $form->field($model, 'total')->textInput()->hiddenInput()->label(false) ?>
+
 	            <div class="col-xs-12">
 	            	<h3 class="col-xs-6">Productos:</h3>
 	            	<!-- Button trigger modal -->

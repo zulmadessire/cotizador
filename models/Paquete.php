@@ -11,6 +11,7 @@ use Yii;
  * @property string $nombre
  * @property string $fecha
  * @property boolean $estado
+ * @property string $total
  */
 class Paquete extends \yii\db\ActiveRecord
 {
@@ -31,6 +32,7 @@ class Paquete extends \yii\db\ActiveRecord
             [['nombre'], 'required'],
             [['fecha'], 'safe'],
             [['estado'], 'boolean'],
+            [['total'], 'number'],
             [['nombre'], 'string', 'max' => 40],
         ];
     }
@@ -45,6 +47,7 @@ class Paquete extends \yii\db\ActiveRecord
             'nombre' => 'Nombre',
             'fecha' => 'Fecha',
             'estado' => 'Estado',
+            'total' => 'Total',
         ];
     }
 }

@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel app\models\CotizacionSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Cotizacions';
+$this->title = 'Cotizaciones';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="cotizacion-index">

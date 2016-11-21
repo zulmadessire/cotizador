@@ -138,9 +138,14 @@ class CotizacionController extends Controller
         $request = Yii::$app->request;
 
         $post_cotizacion = $request->post('Cotizacion');
+        //Productos
         $post_productos = $request->post('producto');
         $post_cantidad = $request->post('cant');
         $post_precio = $request->post('precio');
+        //Paquetes
+        $post_paquetes = $request->post('paquete');
+        $post_cantidad_paquete = $request->post('cant_paquete');
+        $post_precio_paquete = $request->post('precio_paquete');
 
         $model->vendedor = $post_cotizacion['vendedor'];
         $model->cliente = $post_cotizacion['cliente'];
@@ -158,6 +163,17 @@ class CotizacionController extends Controller
             $model_cp->producto_id = $post_productos[$i];
             $model_cp->cantidad = $post_cantidad[$i];
             $model_cp->precio = $post_precio[$i];
+            $model_cp->save();
+            unset($model_cp);
+        }
+
+        for ( $i=0; $i < count($post_paquetes); $i++) {
+            $model_cp = new CotizacionProducto();
+            $model_cp->isNewRecord = true; 
+            $model_cp->cotizacion_id = $model->id;
+            $model_cp->paquete_id = $post_paquetes[$i];
+            $model_cp->cantidad = $post_cantidad_paquete[$i];
+            $model_cp->precio = $post_precio_paquete[$i];
             $model_cp->save();
             unset($model_cp);
         }

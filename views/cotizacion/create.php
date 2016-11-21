@@ -56,6 +56,9 @@ $this->params['breadcrumbs'][] = $this->title;
         		<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#productosModal">
 				  + Añadir Productos
 				</button>
+				<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#paquetesModal">
+				  + Añadir Paquete
+				</button>
 				<?= Html::submitButton('Guardar', ['class' => 'btn btn-primary']) ?>
         	</div>
         	<h3 class="col-xs-6">Productos:</h3>
@@ -169,6 +172,55 @@ $this->params['breadcrumbs'][] = $this->title;
 				      																		   data-nombre="'.$producto['nombre'].'" 
 				      																		   data-descripcion="'.$producto['descripcion'].'" 
 				      																		   data-precio="'.$producto['precio_venta'].'">
+				      																				<span class="glyphicon glyphicon-plus"></span></a></td>';				      				
+				      			echo '</tr>';
+				      		}
+			      		?>
+	            	</tbody> 
+				</table>
+	      	</div>
+	      	<div class="modal-footer">
+	        	<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	      	</div>
+	    </div>
+	</div>
+</div>
+
+<!-- Modal de paquetes -->
+<div class="modal fade" id="paquetesModal" tabindex="-1" role="dialog">
+	<div class="modal-dialog modal-lg" role="document">
+	    <div class="modal-content">
+		    <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		        <h4 class="modal-title" id="myModalLabel">Paquetes</h4>
+		    </div>
+	      	<div class="modal-body">
+
+	      		<table class="table table-hover"> 
+	            	<thead> 
+	            		<tr>
+	            			<th>Nombre</th>
+	            			<th>Cantidad</th> 
+	            			<th>Precio</th>
+	            			<th>Añadir</th>
+	            		</tr>
+	            	</thead>
+	            	<tbody id="paquetes-modal">
+	            		<?php
+				      		$paquetes = Yii::$app->db->createCommand('SELECT * FROM paquete WHERE estado = true')->queryAll();
+
+				      		foreach ($paquetes as $paquete) {
+				      			echo '<tr id="paquete-'.$paquete['id'].'">';
+				      				echo '<td>'.$paquete['nombre'].'</td>';
+				      				echo '<td><div>
+				      							<input id="paquete-cant-'.$paquete['id'].'" class="cant form-control" type="number" value="1" min="1">
+				      						  </div>
+				      					  </td>';
+				      				echo '<td>'.$paquete['total'].'
+				      					  </td>';
+				      				echo '<td><a href="#" class="btn btn-default add-paquete" data-id="'.$paquete['id'].'" 
+				      																		   data-nombre="'.$paquete['nombre'].'"
+				      																		   data-total="'.$paquete['total'].'">
 				      																				<span class="glyphicon glyphicon-plus"></span></a></td>';				      				
 				      			echo '</tr>';
 				      		}
