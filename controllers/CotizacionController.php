@@ -124,40 +124,129 @@ class CotizacionController extends Controller
     public function actionExport($id)
     {
         $data = $this->findModel($id);
+
+        $productos = Yii::$app->db->createCommand('SELECT distinct p.codigo codigo, p.nombre producto, cp.cantidad cantidad, cp.precio precio, (precio*cantidad) total_producto FROM cotizacion_producto cp, producto p WHERE cp.cotizacion_id = '.$id.' and (cp.producto_id is not null and cp.producto_id = p.id)' )->queryAll();
+
+        $paquetes = Yii::$app->db->createCommand('SELECT distinct * FROM cotizacion_producto cp, paquete pa WHERE cp.cotizacion_id = '.$id.' and (cp.paquete_id is not null and cp.paquete_id = pa.id)' )->queryAll(); 
+        
+        $sub_total = 0;
+        $descuento = 0;
+        $iva = 0;
+        $total = 0;
+        for ($i=0; $i < count($productos) ; $i++) { 
+            $sub_total = $productos[$i]['total_producto'] + $sub_total;
+            $productos[$i] = array_values($productos[$i]);
+        }
+
+        $k = count($productos);
+        for ($i=0; $i < count($paquetes) ; $i++) { 
+            $productos[$k][0] = '';
+            $productos[$k][1] = $paquetes[$i]['nombre'];
+            $productos[$k][2] = $paquetes[$i]['cantidad'];
+            $productos[$k][3] = $paquetes[$i]['precio'];
+            $productos[$k][4] = $paquetes[$i]['precio'] * $paquetes[$i]['cantidad'];
+            $sub_total = ($paquetes[$i]['precio'] * $paquetes[$i]['cantidad']) + $sub_total;
+            $k++;
+        }
+
+        //Sub Total
+        $productos[$k][0] = '';
+        $productos[$k][1] = '';
+        $productos[$k][2] = '';
+        $productos[$k][3] = 'Sub Total';
+        $productos[$k][4] = $sub_total;
+        $k++;
+
+        //Descuento
+        $descuento = ($sub_total * $data->descuento) / 100;
+        $productos[$k][0] = '';
+        $productos[$k][1] = '';
+        $productos[$k][2] = '';
+        $productos[$k][3] = 'Descuento %('.$data->descuento.')';
+        $productos[$k][4] = $descuento;
+        $k++;
+
+        //Iva
+        $iva = ($sub_total * $data->iva) / 100;
+        $productos[$k][0] = '';
+        $productos[$k][1] = '';
+        $productos[$k][2] = '';
+        $productos[$k][3] = 'Iva %('.$data->iva.')';
+        $productos[$k][4] = $iva;
+        $k++;
+
+        //Total
+        $total = ($sub_total - $descuento) + $iva;
+        $productos[$k][0] = '';
+        $productos[$k][1] = '';
+        $productos[$k][2] = '';
+        $productos[$k][3] = 'Total';
+        $productos[$k][4] = $total;
+
+        $k++;
+
+        $productos[$k][0] = '';
+        $productos[$k][1] = '';
+        $productos[$k][2] = '';
+        $productos[$k][3] = '';
+        $productos[$k][4] = '';
+        $k++;
+
+        //Informacion cotizacion
+        $productos[$k][0] = 'Vendedor';
+        $productos[$k][1] = ucfirst($data->vendedor);
+        $productos[$k][2] = '';
+        $productos[$k][3] = '';
+        $productos[$k][4] = '';
+        $k++;
+
+        $productos[$k][0] = 'Cliente';
+        $productos[$k][1] = ucfirst($data->cliente);
+        $productos[$k][2] = 'RUC';
+        $productos[$k][3] = $data->ruc;
+        $productos[$k][4] = '';
+        $k++;
+
+        $productos[$k][0] = 'Fecha Cotizacion';
+        $productos[$k][1] = $data->fecha_cotizacion;
+        $productos[$k][2] = 'Fecha Limite';
+        $productos[$k][3] = $data->fecha_limite;
+        $productos[$k][4] = 'Entrega: '.$data->entrega;
+
+        /*echo "<pre>";
+        print_r($productos);
+        echo "</pre>";*/
+
         $file = \Yii::createObject([
             'class' => 'codemix\excelexport\ExcelFile',
             'sheets' => [
 
-                'Users' => [
-                'data' => [
-                    [$data->vendedor, $data->cliente, $data->ruc, $data->fecha_cotizacion, $data->fecha_limite, $data->entrega, $data->iva, $data->descuento],
-                ],
-
-                // Set to `false` to suppress the title row
-                'titles' => [
-                    'Vendedor',
-                    'Cliente',
-                    'Ruc',
-                    'Fecha Cotizacion',
-                    'Fecha Limite',
-                    'Entrega',
-                    'Iva',
-                    'Descuento',
-                ],
+                'Cotizacion' => [   // Name of the excel sheet
+                    'data' =>
+                        $productos,
                 
-             ],
+
+                    // Set to `false` to suppress the title row
+                    'titles' => [
+                        'Codigo',
+                        'Producto o Paquete',
+                        'Cantidad',
+                        'Precio',
+                        'Total',
+                    ],
+
+                    'formats' => [
+                        // Either column name or 0-based column index can be used
+                        'E' => '#,##0.00',
+                        'D' => '#,##0.00',
+                    ],
+
+                ],
             ]
         ]);
 
 
         $file->send('export.xlsx');
-
-        return $this->render('view', [
-            'model' => $this->findModel($id),
-        ]);
-
-
-
         
     }
 
