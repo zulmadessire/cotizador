@@ -33,7 +33,7 @@ jQuery(document).ready(function(jQuery) {
                                                         '<td>'+cantidad+'<input type="text" name="cant[]" value="'+cantidad+'" hidden></td>'+
                                                         '<td>$'+precio+'</td>'+
                                                         '<td>'+descuento+'%<input type="text" name="descuento[]" value="'+descuento+'" hidden></td>'+
-                                                        '<td>$<span id="total-producto-'+id+'">'+total+'</span></td>'+
+                                                        '<td>$<span id="total-producto-'+id+'">'+total.toFixed(2)+'</span></td>'+
                                                         '<td><a class="delete" data-id="'+id+'" href="#"><span class="glyphicon glyphicon-trash"></span></a></td>'+
                                                     '</tr>');
 

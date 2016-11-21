@@ -34,7 +34,7 @@ $this->params['breadcrumbs'][] = $this->title;
             // 'fecha_limite',
             // 'descuento',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            ['class' => 'yii\grid\ActionColumn' ],
         ],
     ]); ?>
 </div>

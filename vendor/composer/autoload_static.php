@@ -30,8 +30,13 @@ class ComposerStaticInit102b2fcb695cdad3f900cff98364806d
         array (
             'phpDocumentor\\Reflection\\' => 25,
         ),
+        'm' => 
+        array (
+            'mikehaertl\\tmp\\' => 15,
+        ),
         'c' => 
         array (
+            'codemix\\excelexport\\' => 20,
             'cebe\\markdown\\' => 14,
         ),
         'W' => 
@@ -113,6 +118,14 @@ class ComposerStaticInit102b2fcb695cdad3f900cff98364806d
             0 => __DIR__ . '/..' . '/phpdocumentor/reflection-common/src',
             1 => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src',
             2 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
+        ),
+        'mikehaertl\\tmp\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/mikehaertl/php-tmpfile/src',
+        ),
+        'codemix\\excelexport\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/codemix/yii2-excelexport/src',
         ),
         'cebe\\markdown\\' => 
         array (
@@ -198,6 +211,10 @@ class ComposerStaticInit102b2fcb695cdad3f900cff98364806d
             'Prophecy\\' => 
             array (
                 0 => __DIR__ . '/..' . '/phpspec/prophecy/src',
+            ),
+            'PHPExcel' => 
+            array (
+                0 => __DIR__ . '/..' . '/phpoffice/phpexcel/Classes',
             ),
         ),
         'H' => 

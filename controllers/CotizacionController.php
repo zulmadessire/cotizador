@@ -109,9 +109,56 @@ class CotizacionController extends Controller
      */
     public function actionDelete($id)
     {
+        CotizacionProducto::deleteAll('cotizacion_id = '.$id.'');
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
+    }
+
+    /**
+     * Deletes an existing Cotizacion model.
+     * If deletion is successful, the browser will be redirected to the 'index' page.
+     * @param string $id
+     * @return mixed
+     */
+    public function actionExport($id)
+    {
+        $data = $this->findModel($id);
+        $file = \Yii::createObject([
+            'class' => 'codemix\excelexport\ExcelFile',
+            'sheets' => [
+
+                'Users' => [
+                'data' => [
+                    [$data->vendedor, $data->cliente, $data->ruc, $data->fecha_cotizacion, $data->fecha_limite, $data->entrega, $data->iva, $data->descuento],
+                ],
+
+                // Set to `false` to suppress the title row
+                'titles' => [
+                    'Vendedor',
+                    'Cliente',
+                    'Ruc',
+                    'Fecha Cotizacion',
+                    'Fecha Limite',
+                    'Entrega',
+                    'Iva',
+                    'Descuento',
+                ],
+                
+             ],
+            ]
+        ]);
+
+
+        $file->send('export.xlsx');
+
+        return $this->render('view', [
+            'model' => $this->findModel($id),
+        ]);
+
+
+
+        
     }
 
     /**

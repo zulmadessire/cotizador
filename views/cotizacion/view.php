@@ -46,6 +46,11 @@ $this->params['breadcrumbs'][] = $this->title;
     </br>
     <div class="row">
         <div class="clo-xs-12">
+
+            <div class="text-right">
+                <?= Html::a('Exportar', ['/cotizacion/export', 'id' => $model->id], ['class'=>'btn btn-primary']) ?>
+            </div>
+            
             <h2>Detalle Cotización:</h2>
             <?php $productos = Yii::$app->db->createCommand('SELECT distinct * FROM cotizacion_producto cp, producto p WHERE cp.cotizacion_id = '.$model->id.' and (cp.producto_id is not null and cp.producto_id = p.id)' )->queryAll();
 

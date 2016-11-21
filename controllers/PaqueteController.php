@@ -108,6 +108,7 @@ class PaqueteController extends Controller
      */
     public function actionDelete($id)
     {
+        PaqueteProducto::deleteAll('paquete_id = '.$id.'');
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);

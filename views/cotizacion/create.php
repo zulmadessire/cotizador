@@ -42,7 +42,7 @@ $this->params['breadcrumbs'][] = $this->title;
 			])->label('Validez Cotización') ?>
 		</div>
 		<div class="col-xs-3">
-			<?= $form->field($model, 'entrega')->textInput()->label('Tiempo de entrega') ?>
+			<?= $form->field($model, 'entrega')->textInput(['value'=>'Inmediata'])->label('Tiempo de entrega') ?>
 		</div>
 		<div class="col-xs-3">
 			<?= $form->field($model, 'iva')->textInput(['value'=>'12'])->label('IVA') ?>

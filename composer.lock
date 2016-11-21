@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "f67a58920e15536004b034b47aa3b134",
-    "content-hash": "07e5ad88b34acf3fe6a4c930f529ac93",
+    "hash": "fb013877ae1d61e08732ac66fe44b3e6",
+    "content-hash": "30343ec4ddf3a59133a0fe71a16a7da3",
     "packages": [
         {
             "name": "bower-asset/bootstrap",
@@ -256,6 +256,49 @@
             "time": "2016-09-14 20:40:20"
         },
         {
+            "name": "codemix/yii2-excelexport",
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/codemix/yii2-excelexport.git",
+                "reference": "7959054ca07d01ed36059e2e4854901deac3d392"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/codemix/yii2-excelexport/zipball/7959054ca07d01ed36059e2e4854901deac3d392",
+                "reference": "7959054ca07d01ed36059e2e4854901deac3d392",
+                "shasum": ""
+            },
+            "require": {
+                "mikehaertl/php-tmpfile": "^1.0.0",
+                "phpoffice/phpexcel": "1.*",
+                "yiisoft/yii2": "*"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "codemix\\excelexport\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Michael Härtl",
+                    "email": "haertl.mike@gmail.com"
+                }
+            ],
+            "description": "A utility to quickly create Excel files from query results or raw data",
+            "keywords": [
+                "excel",
+                "export",
+                "yii2"
+            ],
+            "time": "2016-08-03 06:57:09"
+        },
+        {
             "name": "ezyang/htmlpurifier",
             "version": "v4.8.0",
             "source": {
@@ -298,6 +341,99 @@
                 "html"
             ],
             "time": "2016-07-16 12:58:58"
+        },
+        {
+            "name": "mikehaertl/php-tmpfile",
+            "version": "1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mikehaertl/php-tmpfile.git",
+                "reference": "b1b013cc29a8ee0423994b286d22e3aed6640d4e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mikehaertl/php-tmpfile/zipball/b1b013cc29a8ee0423994b286d22e3aed6640d4e",
+                "reference": "b1b013cc29a8ee0423994b286d22e3aed6640d4e",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "mikehaertl\\tmp\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Michael Härtl",
+                    "email": "haertl.mike@gmail.com"
+                }
+            ],
+            "description": "A convenience class for temporary files",
+            "keywords": [
+                "files"
+            ],
+            "time": "2016-07-07 05:59:42"
+        },
+        {
+            "name": "phpoffice/phpexcel",
+            "version": "1.8.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/PHPOffice/PHPExcel.git",
+                "reference": "372c7cbb695a6f6f1e62649381aeaa37e7e70b32"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/PHPOffice/PHPExcel/zipball/372c7cbb695a6f6f1e62649381aeaa37e7e70b32",
+                "reference": "372c7cbb695a6f6f1e62649381aeaa37e7e70b32",
+                "shasum": ""
+            },
+            "require": {
+                "ext-xml": "*",
+                "ext-xmlwriter": "*",
+                "php": ">=5.2.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "PHPExcel": "Classes/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "LGPL"
+            ],
+            "authors": [
+                {
+                    "name": "Maarten Balliauw",
+                    "homepage": "http://blog.maartenballiauw.be"
+                },
+                {
+                    "name": "Mark Baker"
+                },
+                {
+                    "name": "Franck Lefevre",
+                    "homepage": "http://blog.rootslabs.net"
+                },
+                {
+                    "name": "Erik Tilt"
+                }
+            ],
+            "description": "PHPExcel - OpenXML - Read, Create and Write Spreadsheet documents in PHP - Spreadsheet engine",
+            "homepage": "http://phpexcel.codeplex.com",
+            "keywords": [
+                "OpenXML",
+                "excel",
+                "php",
+                "spreadsheet",
+                "xls",
+                "xlsx"
+            ],
+            "time": "2015-05-01 07:00:55"
         },
         {
             "name": "swiftmailer/swiftmailer",

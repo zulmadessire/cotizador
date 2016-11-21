@@ -57,4 +57,13 @@ return array (
       '@yii/jui' => $vendorDir . '/yiisoft/yii2-jui',
     ),
   ),
+  'codemix/yii2-excelexport' => 
+  array (
+    'name' => 'codemix/yii2-excelexport',
+    'version' => '1.0.1.0',
+    'alias' => 
+    array (
+      '@codemix/excelexport' => $vendorDir . '/codemix/yii2-excelexport/src',
+    ),
+  ),
 );
